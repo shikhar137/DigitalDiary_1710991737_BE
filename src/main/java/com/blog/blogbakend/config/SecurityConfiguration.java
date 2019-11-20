@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.
                 jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username,password,active from users where username=?")
-                .authoritiesByUsernameQuery("select username from users where username=?");
+                .authoritiesByUsernameQuery("select username,password from users where username=?");
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception

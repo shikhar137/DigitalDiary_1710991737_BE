@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.blog.blogbakend.Repository.userRepository;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,7 +31,23 @@ public class userService {
         return userRepository.findByUsername(principal.getName());
     }
 
+    public List<Users> searchResult(String keyword) {
+        List<Users> itemsList = userRepository.findAll();
+        List<Users> foundList = new ArrayList<>();
 
+        for (Users items : itemsList) {
+            if (items.getUsername() != null && (items.getUsername().
+                    toLowerCase().contains(keyword.toLowerCase())
+
+                    || items.getFirstname().toLowerCase().contains(keyword.toLowerCase())
+                    || items.getLastname().toLowerCase().contains(keyword.toLowerCase())
+            )
+            ) {
+                foundList.add(items);
+            }
+        }
+        return foundList;
+    }
 }
 
 

@@ -3,6 +3,7 @@ package com.blog.blogbakend.modals;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="users")
@@ -22,8 +23,13 @@ public class Users implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name = "active")
-    private int active;
-
+    private int active=1;
+    @Column(name = "status")
+    private String status;
+    @Column(name = "following")
+    private ArrayList<Integer> following;
+    @Column(name = "followers")
+    private ArrayList<Integer> followers;
 
     public int getUserid() {
         return userid;
@@ -79,5 +85,29 @@ public class Users implements Serializable {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public ArrayList<Integer> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(ArrayList<Integer> following) {
+        this.following = following;
+    }
+
+    public ArrayList<Integer> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(ArrayList<Integer> followers) {
+        this.followers = followers;
     }
 }
